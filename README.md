@@ -6,6 +6,13 @@ then you need to make sure it is sorted after. This is commonly done by prependi
 
 I was wondering if it would be a better solution to be able to specify dependencies on other configs instead.
 
+## Requirements
+
+This config reader require Sitecore 8.1.160302 (8.1 Update-2) or higher.
+
+This is where they moved the logic from `Sitecore.Configuration.Factory` to `Sitecore.Configuration.ConfigReader` and made
+the class methods `virtual` so it's possible to override parts of the logic.
+
 ## Installation
 
 Just install the NuGet package and it will transform your `Web.config` to replace the default Sitecore `ConfigReader` with this one.
