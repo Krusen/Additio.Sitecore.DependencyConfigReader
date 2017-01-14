@@ -38,9 +38,9 @@ namespace Additio.Configuration
 
         protected virtual string NormalizePattern(string pattern)
         {
-            pattern = pattern.ToLowerInvariant().Replace('/', '\\').TrimStart('\\');
+            pattern = pattern.Replace('/', '\\').TrimStart('\\');
 
-            if (!pattern.EndsWith(".config"))
+            if (!pattern.EndsWith(".config", StringComparison.OrdinalIgnoreCase))
                 pattern += ".config";
 
             return pattern;
