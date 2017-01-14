@@ -1,3 +1,5 @@
+#tool "xunit.runner.console"
+
 var target = Argument("target", "Default");
 
 var solution = "./src/Additio.Sitecore.DependencyConfigReader.sln";
@@ -31,6 +33,26 @@ Task("Build")
     );
 });
 
+Task("UnitTest")
+    .IsDependentOn("Build")
+    .Does(() =>
+{
+    var projectFiles = GetFiles("./src/**/*.csproj").Where(x => x.FullPath.EndsWith(".Tests.csproj"));
+
+    foreach (var project in projectFiles)
+    {
+        Information("Building test project '" + project.Segments.Last() + "'");
+        MSBuild(project, settings =>
+            settings.SetVerbosity(Verbosity.Normal)
+                    .SetConfiguration("Release")
+                    .WithTarget("Build")
+                    .UseToolVersion(MSBuildToolVersion.VS2015)
+                    .ArgumentCustomization = args => args.Append("/nologo")
+            );
+    }
+
+    XUnit2("./src/**/bin/Release/*.Tests.dll");
+});
 
 Task("Pack")
     .IsDependentOn("Build")
