@@ -17,9 +17,10 @@ the class methods `virtual` so it's possible to override parts of the logic.
 
 ## Installation
 
-Just install the NuGet package and it will transform your `Web.config` to replace the default Sitecore `ConfigReader` with this one.
+Just install the NuGet package [Additio.Sitecore.DependencyConfigReader](https://www.nuget.org/packages/Additio.Sitecore.DependencyConfigReader/)
+and it will transform your `Web.config` to replace the default Sitecore `ConfigReader` with this one.
 
-If your `Web.config` is not in the same project, you will have to manually replace it.
+If your `Web.config` is not in the same project, you will have to manually replace the value.
 
 ```xml
 <!-- Web.config -->
