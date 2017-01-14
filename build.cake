@@ -3,7 +3,7 @@
 var target = Argument("target", "Default");
 
 var solution = "./src/Additio.Sitecore.DependencyConfigReader.sln";
-var version = "1.0.2";
+var version = "1.0.3";
 var buildOutput = "./.build";
 
 Task("Default")
