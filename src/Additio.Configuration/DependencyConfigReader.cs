@@ -11,13 +11,9 @@ namespace Additio.Configuration
     {
         protected IDependencyResolver DependencyResolver { get; set; }
 
-        public DependencyConfigReader() : this(new DependencyResolver())
+        public DependencyConfigReader()
         {
-        }
-
-        public DependencyConfigReader(IDependencyResolver dependencyResolver)
-        {
-            DependencyResolver = dependencyResolver;
+            DependencyResolver = new DependencyResolver();
         }
 
         protected override void LoadAutoIncludeFiles(ConfigPatcher patcher, string folder)
