@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace Additio.Configuration
 {
@@ -15,6 +14,17 @@ namespace Additio.Configuration
         protected const string DependencyAttributeName = "dependencies";
 
         protected static readonly char[] Separators = {',', ';', '|'};
+
+        protected IAttributeLoader AttributeLoader { get; set; }
+
+        public DependencyLoader() : this(new AttributeLoader())
+        {
+        }
+
+        public DependencyLoader(IAttributeLoader attributeLoader)
+        {
+            AttributeLoader = attributeLoader;
+        }
 
         public virtual IEnumerable<string> GetDependencyPatterns(string configFile)
         {
@@ -38,7 +48,7 @@ namespace Additio.Configuration
 
         protected virtual string GetDependencyAttributeValue(string configFile)
         {
-            var attributes = XElement.Load(configFile).Attributes();
+            var attributes = AttributeLoader.GetAttributesOnRootElement(configFile);
 
             var attribute =
                 attributes.FirstOrDefault(

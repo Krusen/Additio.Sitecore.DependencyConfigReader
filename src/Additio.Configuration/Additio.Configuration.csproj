@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeLoader.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="DependencyConfigReader.cs" />
     <Compile Include="DependencyLoader.cs" />
