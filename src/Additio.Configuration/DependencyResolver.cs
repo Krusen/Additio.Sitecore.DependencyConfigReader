@@ -53,10 +53,14 @@ namespace Additio.Configuration
 
         protected virtual IList<Node> GetSortedGraph(IList<Node> graph)
         {
-            var stack = new Stack<Node>(graph);
+            // Nodes without dependencies should retain their original order
+            var list = graph.Where(x => !x.Dependencies.Any()).ToList();
+
+            // Only sort nodes with dependencies
+            var stack = new Stack<Node>(graph.Where(x => x.Dependencies.Any()));
+
             var marked = new HashSet<Node>();
             var visited = new HashSet<Node>();
-            var list = new List<Node>();
 
             while (stack.Any())
             {
