@@ -13,6 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{6B3A3DAD-BE71-497C-AE55-C5A149E630E2}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuget\Additio.Sitecore.DependencyConfigReader.nuspec = ..\nuget\Additio.Sitecore.DependencyConfigReader.nuspec
+		..\nuget\readme.txt = ..\nuget\readme.txt
+		..\nuget\web.config.install.xdt = ..\nuget\web.config.install.xdt
+		..\nuget\web.config.uninstall.xdt = ..\nuget\web.config.uninstall.xdt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

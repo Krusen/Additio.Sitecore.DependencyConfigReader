@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Additio.Sitecore.DependencyConfigReader</id>
+    <version>1.0.0</version>
+    <authors>Søren Kruse</authors>
+    <licenseUrl>https://github.com/Krusen/Additio.Sitecore.DependencyConfigReader/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/Krusen/Additio.Sitecore.DependencyConfigReader</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sitecore config reader with support for specifying dependency on other config files. Requires Sitecore 8.1.160302 or higher.</description>
+    <copyright></copyright>
+    <tags>sitecore config reader dependency dependencies</tags>
+  </metadata>
+  <files>
+    <file src="../src/Additio.Configuration/bin/Release/Additio.Configuration.dll" target="lib/net45" />
+    <file src="../src/Additio.Configuration/bin/Release/Additio.Configuration.pdb" target="lib/net45" />
+
+    <file src="readme.txt" target="" />
+    <file src="web.config.*.xdt" target="content" />
+  </files>
+</package>
