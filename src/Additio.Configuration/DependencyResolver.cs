@@ -7,7 +7,7 @@ namespace Additio.Configuration
 {
     public interface IDependencyResolver
     {
-        IList<Node> GetSortedFiles(IList<string> configFiles);
+        IList<Node> GetSortedFiles(IList<string> configFiles, string folder);
     }
 
     public class DependencyResolver : IDependencyResolver
@@ -23,9 +23,9 @@ namespace Additio.Configuration
             DependencyLoader = dependencyLoader;
         }
 
-        public virtual IList<Node> GetSortedFiles(IList<string> configFiles)
+        public virtual IList<Node> GetSortedFiles(IList<string> configFiles, string folder)
         {
-            var graph = configFiles.Select(x => new Node {FilePath = x}).ToList() as IList<Node>;
+            var graph = configFiles.Select(x => new Node(folder) {FilePath = x}).ToList() as IList<Node>;
 
             MapDependencies(graph);
 
@@ -64,13 +64,13 @@ namespace Additio.Configuration
 
             while (stack.Any())
             {
-                VisitNode(stack.Pop(), marked, visited, list);
+                VisitNode(stack.Pop(), marked, visited, list, true);
             }
 
             return list;
         }
 
-        protected virtual void VisitNode(Node node, HashSet<Node> markedNodes, HashSet<Node> visitedNodes, IList<Node> list)
+        protected virtual void VisitNode(Node node, HashSet<Node> markedNodes, HashSet<Node> visitedNodes, IList<Node> list, bool shouldAddToList)
         {
             // If currently marked then we have a circular dependency
             if (markedNodes.Contains(node))
@@ -85,12 +85,13 @@ namespace Additio.Configuration
 
             foreach (var dependency in node.Dependencies)
             {
-                VisitNode(dependency, markedNodes, visitedNodes, list);
+                VisitNode(dependency, markedNodes, visitedNodes, list, false);
             }
 
             markedNodes.Remove(node);
             visitedNodes.Add(node);
-            list.Add(node);
+
+            if (shouldAddToList) list.Add(node);
         }
 
         protected virtual bool IsWildcardMatch(string input, string wildcardPattern)

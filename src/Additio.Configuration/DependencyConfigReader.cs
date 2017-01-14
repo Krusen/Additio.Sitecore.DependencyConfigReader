@@ -31,7 +31,7 @@ namespace Additio.Configuration
                     return;
 
                 var configFiles = Directory.GetFiles(folder, "*.config", SearchOption.AllDirectories).ToList();
-                var sortedFiles = DependencyResolver.GetSortedFiles(configFiles);
+                var sortedFiles = DependencyResolver.GetSortedFiles(configFiles, folder);
 
                 foreach (var node in sortedFiles)
                 {
