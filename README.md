@@ -1,4 +1,6 @@
 # Sitecore Dependency Config Reader
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/c5mlwb1s0uqs3dtu/branch/master?svg=true)](https://ci.appveyor.com/project/Krusen/additio-sitecore-dependencyconfigreader)
+[![NuGet Analyzer](https://buildstats.info/nuget/additio.sitecore.dependencyconfigreader?includePreReleases=false)](https://www.nuget.org/packages/Additio.Sitecore.DependencyConfigReader/)
 
 By default Sitecore patches config files in the `/App_Config/Include` folder alphabetically, 
 which means if you need to make sure your file is patched after a specific default Sitecore config,
