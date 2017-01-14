@@ -23,9 +23,17 @@ namespace Additio.Configuration
             if (string.IsNullOrWhiteSpace(value))
                 return Enumerable.Empty<string>();
 
-            value = value.Replace('/', '\\').Replace(".config", "");
+            return value.Split(Separators, StringSplitOptions.RemoveEmptyEntries).Select(NormalizePattern);
+        }
 
-            return value.Split(Separators, StringSplitOptions.RemoveEmptyEntries).Select(x => x.TrimStart('\\'));
+        protected virtual string NormalizePattern(string pattern)
+        {
+            pattern = pattern.ToLowerInvariant().Replace('/', '\\').TrimStart('\\');
+
+            if (!pattern.EndsWith(".config"))
+                pattern += ".config";
+
+            return pattern;
         }
 
         protected virtual string GetDependencyAttributeValue(string configFile)
